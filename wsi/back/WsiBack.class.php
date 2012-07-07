@@ -250,6 +250,11 @@ class WsiBack {
 				<input type="image" id="reset_img" alt="<?php echo __('Reset','wp-splash-image'); ?>" src="<?php echo WsiCommons::getURL(); ?>/style/reset.png" />
 			</form>
 		</div>
+
+		<!-- Logo Tests -->
+		<div id="display_tests" title="<?php echo __('Tests','wp-splash-image'); ?>">
+			<img id="tests_img" rel="#tests" src="<?php echo WsiCommons::getURL(); ?>/style/tests.png" />
+		</div>
 		
 		<!-- Logo GitHub -->
 		<img id="github_img1" alt="github" src="<?php echo WsiCommons::getURL(); ?>/style/github/ForkMe_Blk.png" usemap="#github_map" />
@@ -278,6 +283,7 @@ class WsiBack {
 		<?php require("forms/FeedbackForm.inc.php"); ?>
 		<?php require("forms/DocumentationForm.inc.php"); ?>
 		<?php require("forms/UninstallForm.inc.php"); ?>
+		<?php require("forms/Tests.inc.php"); ?>
 		<?php if ($uninstalled) { require("forms/UninstallConfirmForm.inc.php"); } ?>
 		
 	</div>
@@ -374,6 +380,9 @@ class WsiBack {
 			// Activation du tooltip de "Buy me a Beer"
 			$('#buyMeABeer_img').tooltip({effect: 'slide', offset: [10, 2], tipClass: 'tooltip bottom buyMeABeer'}).dynamic({ bottom: { direction: 'down', bounce: true } });
 			
+			// Activation du tooltip de "Tests"
+			$('#display_tests').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
+
 			// Activation du tooltip de "Reset"
 			$('#display_reset').tooltip({effect: 'slide', offset: [10, 2]}).dynamic({ bottom: { direction: 'down', bounce: true } });
 
@@ -406,6 +415,9 @@ class WsiBack {
 			// Activation de l'overlay de l'info
 			$("#info_img[rel]").overlay({mask: '#000', effect: 'apple'});
 			
+			// Activation de l'overlay pour les tests
+			$("#tests_img[rel]").overlay({mask: '#000', effect: 'apple'});
+
 			// Activation de l'overlay du feedback
 			$("#feedback_img[rel]").overlay({
 				mask: '#000', 

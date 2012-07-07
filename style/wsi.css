@@ -57,11 +57,15 @@
 	margin-left:310px;
 }
 
-#display_reset {
+#display_tests {
 	margin-left:350px;
 }
 
-#display_info, #display_feedback, #display_uninstall, #display_reset, #display_buyMeABeer {
+#display_reset {
+	margin-left:390px;
+}
+
+#display_info, #display_feedback, #display_uninstall, #display_reset, #display_buyMeABeer, #display_tests {
 	margin-top:5px;
 	position: absolute;	
 }
@@ -79,6 +83,6 @@
 	margin: -4px -141px 0 0;
 }
 
-#info_img, #feedback_img, #uninstall_img, #buyMeABeer_img {
+#info_img, #feedback_img, #uninstall_img, #buyMeABeer_img, #display_tests {
 	cursor: pointer;
 }
