@@ -48,7 +48,7 @@ class HtmlReporter extends SimpleReporter {
         print "<style type=\"text/css\">\n";
         print $this->getCss() . "\n";
         print "</style>\n";
-        print "</head>\n<body>\n";
+        print "</head>\n<body style='color:#FFFFFF;''>\n";
         print "<h1>$test_name</h1>\n";
         flush();
     }
