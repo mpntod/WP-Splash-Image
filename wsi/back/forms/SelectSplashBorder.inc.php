@@ -1,0 +1,3 @@
+<div id="select_border">
+	Select splash image border...
+</div>

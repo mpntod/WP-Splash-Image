@@ -63,6 +63,8 @@
 	</div>
 	<!-- /Tabs --> 
 	<br />
+	<?php require("SelectSplashBorder.inc.php"); ?>
+	<br />
 	<table>
 		<tr>
 			<td><?php echo __('Close esc function','wp-splash-image'); ?>:</td>
