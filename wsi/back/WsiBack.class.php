@@ -28,7 +28,7 @@ class WsiBack {
 		
 		add_action ( 'admin_init',                                       array(&$this, 'wp_splash_image_back_init' ));
 		add_action ( 'admin_menu',                                       array(&$this, 'wsi_menu' ));
-		add_action ( 'plugins_loaded',                                   array(&$this, 'update_db_check' ));
+		register_activation_hook( WsiCommons::$pluginMainFile,           array(&$this, 'update_db_check' ));
 		add_filter ( 'plugin_action_links_'.WsiCommons::$pluginMainFile, array(&$this, 'wsi_filter_plugin_actions' ));
 		add_filter ( 'plugin_row_meta',                                  array(&$this, 'set_plugin_meta'), 10, 2 );
 
@@ -128,7 +128,7 @@ class WsiBack {
 		if (isset($_GET['page']) && $_GET['page'] == 'wp_splash_image') {
 			
 			// Déclaration des scripts de la partie Admin
-			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide]*/
+			wp_register_script('jquery.tools.back', WsiCommons::getURL().'/js/jQueryTools/jquery.tools.min.wp-back.js'); /*[overlay, overlay.apple, dateinput, rangeinput, validator, tooltip, tooltip.dynamic, tooltip.slide, toolbox.expose]*/
 			wp_register_script('jquery.keyfilter',  WsiCommons::getURL().'/js/jquery.keyfilter-1.7.min.js'); /* KeyFilter (for splash_color, splash_image_height, splash_image_width fields) */
 			
 			// JQuery (wordpress version)
@@ -470,6 +470,34 @@ class WsiBack {
 			$('#splash_color').keyfilter(/[0-9a-f]/i);
 			$('#splash_image_height').keyfilter(/[\d\.]/);
 			$('#splash_image_width').keyfilter(/[\d\.]/);
+
+			// Live Preview
+			$('#live_preview_button').click(function() {
+				$.get('<?php echo WsiCommons::getURL() ?>/wsi/back/splash/demo.php', { 
+					url_splash_image:          $("#url_splash_image").val(),
+					splash_image_width:        $("#splash_image_width").val(),
+					splash_image_height:       $("#splash_image_height").val(),
+					splash_color:              $('#splash_color').val(),
+					wsi_display_time:          $("[name='wsi_display_time']").val(),
+					wsi_fixed_splash:          $("#wsi_fixed_splash:checked").is(":checked"),
+					wsi_picture_link_url:      $("#wsi_picture_link_url").val(),
+					wsi_picture_link_target:   $("#wsi_picture_link_target").val(),
+					wsi_include_url:           $("#wsi_include_url").val(),
+					wsi_close_esc_function:    $("#wsi_close_esc_function:checked").is(":checked"),
+					wsi_hide_cross:            $("#wsi_hide_cross:checked").is(":checked"),
+					wsi_disable_shadow_border: $("#wsi_disable_shadow_border:checked").is(":checked"),
+					wsi_type:                  $("[name='wsi_type']:checked").val(),
+					wsi_opacity:               $("[name='wsi_opacity']").val(),
+					wsi_youtube:               $("#wsi_youtube").val(),
+					wsi_youtube_autoplay:      $("#wsi_youtube_autoplay:checked").is(":checked"),
+					wsi_youtube_loop:          $("#wsi_youtube_loop:checked").is(":checked"),
+					wsi_yahoo:                 $("#wsi_yahoo").val(),
+					wsi_dailymotion:           $("#wsi_dailymotion").val(),
+					wsi_metacafe:              $("#wsi_metacafe").val(),
+					wsi_swf:                   $("#wsi_swf").val(),
+					wsi_html:                  $("#wsi_html").val()
+				}, function(files) { $('#live_preview_div').html(files); });
+			});
 
 		});
 	</script>
